@@ -1,0 +1,25 @@
+{
+  "name": "huasheng",
+  "version": "1.0.0",
+  "description": "My perfect Nuxt.js project",
+  "author": "ling",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.0.0",
+    "element-ui": "^2.4.6",
+    "@nuxtjs/axios": "^5.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.10.0",
+    "nodemon": "^1.11.0",
+    "sass-loader": "^7.1.0",
+    "scss-loader": "0.0.1"
+  }
+}
