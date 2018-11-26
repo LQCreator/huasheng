@@ -11,3 +11,10 @@
 ol, ul {
   list-style: none;
 }
+
+a {
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: #333;
+}
