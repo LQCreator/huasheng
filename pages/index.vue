@@ -27,6 +27,35 @@
         </el-carousel-item>
       </el-carousel>
     </div>
+    <div class="company">
+      <div class="container swiper-container-sy">
+        <div class="company-left">
+          <div class="title">
+            <h2>关于我们</h2>
+            <h2>About Us</h2>
+          </div>
+          <div class="company-content">
+            <div class="company-info">
+              华盛陶粒是目前陶粒行业集研发、生产、销售、服务于一体的专业化陶粒企业。有着10余条生产线。50多名员工，全规格陶粒年产量达到20万立方。目前办事处设在南京江宁，欢迎各界人士前来参观、考察、洽谈业务，华盛陶粒，专注于保温建材节能领域，坚持“稳健经营、持续创新、开放合作”。华盛陶粒拥有雄厚的技术力量，先进的生产设备，庞大的精英生产团队，为企业和客户提供满意的产品和服务，并致力于节能、减排、环保、创造社会效益，实干赢取未来，创新成就梦想
+            </div>
+            <a class="company-more" href="">了解更多</a>
+            <img :src="companyHonor" alt="">
+            <div class="honor-contain">
+              <ul :style="{ left: honorLeft + 'px' }">
+                <li v-for="(honorImg,index) in honorList" :key="index">
+                  <a href="">
+                    <img class="honor-img" :src="honorImg.url">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="company-right">
+          <img class="company-img" :src="companyIntroduce">
+        </div>
+      </div>
+    </div>
     <div class="product">
       <div class="container swiper-container-sy">
         <div class="title">
@@ -36,7 +65,7 @@
         </div>
         <ul class="swiper-wrapper">
           <li class="swiper-slide" v-for="(product,index) in productList" :key="index">
-            <a href="//bm001.com/product/ywd/">
+            <a href="">
               <img class="product-img" :src="product.url">
               <h3>{{product.name}}</h3>
             </a>
@@ -92,42 +121,72 @@
             url: 'http://www.njhuasheng.cn/images/up_images/201895222211.jpg',
           },
         ],
-        caseList:[
+        caseList: [
           {
             url: 'http://www.njhuasheng.cn/images/up_images/2018914134214.jpg',
-            name:'恒大建筑合作案例'
+            name: '恒大建筑合作案例'
           },
           {
             url: 'http://www.njhuasheng.cn/images/up_images/2018914133727.jpg',
-            name:'鑫科建筑合作案例'
+            name: '鑫科建筑合作案例'
           },
           {
             url: 'http://www.njhuasheng.cn/images/up_images/201891413359.jpg',
-            name:'施工现场产品验收'
+            name: '施工现场产品验收'
           },
           {
             url: 'http://www.njhuasheng.cn/images/up_images/2018914133413.jpg',
-            name:'鲁南酒店合作案例'
+            name: '鲁南酒店合作案例'
           },
           {
             url: 'http://www.njhuasheng.cn/images/up_images/2018914134327.jpg',
-            name:'水电四局合作案例'
+            name: '水电四局合作案例'
           },
           {
             url: 'http://www.njhuasheng.cn/images/up_images/201891413100.jpg',
-            name:'中建集团合作案例'
+            name: '中建集团合作案例'
           },
-
-
-
-
-
-        ]
+        ],
+        companyIntroduce: 'http://www.shjztl.com/web/uploads/cover/20180703/jXM0VR9FG90t5HrZ3J705OWy32x8t313.jpg',
+        companyHonor: 'http://www.shjztl.com/web/template/pctpl/images/i02.png',
+        honorList: [
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j3v9305ka28BmKj38Q0Huhr870vg2w1h.jpg'
+          },
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j0151kWS71IHbU1g27033Tk2kranL31u.jpg'
+          },
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j3w7p85RjK5k3u5flZ005axPG570E0r1.jpg'
+          },
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j3v9305ka28BmKj38Q0Huhr870vg2w1h.jpg'
+          },
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j0151kWS71IHbU1g27033Tk2kranL31u.jpg'
+          },
+          {
+            url: 'http://www.shjztl.com/web/uploads/cover/20180705/j3w7p85RjK5k3u5flZ005axPG570E0r1.jpg'
+          },
+        ],
+        honorLeft: 0
       }
+    },
+    mounted() {
+      setInterval(this._changeHonorLeft, 10);
     },
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath)
+      },
+      _changeHonorLeft(){
+        if(this.honorLeft < -710){
+          this.honorLeft = 0
+        }else{
+
+          this.honorLeft -= 1;
+        }
+
       }
     }
   }
@@ -164,8 +223,96 @@
     height: 100%;
   }
 
+  .company {
+    height: 654px;
+    background-image: url("http://www.shjztl.com/web/template/pctpl/images/01.jpg");
+  }
+
   .product {
     height: 594px;
+  }
+
+  .company-left {
+    float: left;
+    width: 750px;
+    height: 654px;
+  }
+
+  .company-right {
+    float: right;
+    width: 450px;
+    height: 654px;
+    position: relative;
+  }
+
+  .company-img {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .company-content {
+    width: 700px;
+  }
+
+  .company-info {
+    text-indent: 2em;
+    line-height: 26px;
+    color: #666;
+  }
+
+  .company-more {
+    display: inline-block;
+    float: right;
+    clear: both;
+    width: 120px;
+    height: 34px;
+    background-color: #0057ba;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 32px;
+    color: #fff;
+    margin-top: 12px;
+  }
+
+  .company-content img {
+    display: block;
+    clear: both;
+  }
+
+  .honor-contain {
+    width: 714px;
+    height: 140px;
+    position: relative;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .honor-contain ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    width: 1500px;
+    /*width: 724px;*/
+  }
+
+  .honor-contain ul li {
+    float: left;
+    width: 218px;
+    height: 140px;
+    list-style: none;
+    margin-right: 20px;
+  }
+
+  .honor-contain ul li:last-child {
+    margin-right: 0;
+  }
+
+  .honor-img {
+    width: 100%;
   }
 
   .container {
@@ -222,7 +369,7 @@
   .product .container ul li {
     float: left;
     width: 220px;
-    height: 268px;
+    height: 248px;
     margin-right: 106px;
     border: 1px solid #f5f5f5;
     box-shadow: 3.24px 2.35px 10px 0 rgba(0, 0, 0, .1);
@@ -232,7 +379,7 @@
   .product .container ul li a {
     display: block;
     width: 220px;
-    height: 220px;
+    height: 200px;
   }
 
   .product .container ul li h3 {
@@ -256,7 +403,7 @@
 
   .product-img {
     width: 100%;
-    height: 220px;
+    height: 200px;
   }
 
   .case {
@@ -291,7 +438,7 @@
     text-align: center;
   }
 
-  .case-img{
+  .case-img {
     width: 100%;
     height: 175px;
   }
