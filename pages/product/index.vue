@@ -57,11 +57,43 @@
               <span slot="title">陶粒加气块</span>
             </el-menu-item>
           </el-menu>
+          <h2>新闻资讯</h2>
+          <el-menu
+            default-active="1"
+            class="news"
+            @open="handleOpen"
+            @close="handleClose"
+            @select="selectProduct">
+            <el-menu-item index="1">
+              <i class="el-icon-document"></i>
+              <span slot="title">陶粒简析陶粒在生活中的巧用</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-document"></i>
+              <span slot="title">热烈祝贺南京华盛新型节能环保</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-document"></i>
+              <span slot="title">南京华盛推出陶粒加气砌块</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-document"></i>
+              <span slot="title">南京华盛陶粒成为环保节能陶粒</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-document"></i>
+              <span slot="title">华盛陶粒厂粘土陶粒使用“土法</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-document"></i>
+              <span slot="title">陶粒的构成特点及功能？</span>
+            </el-menu-item>
+          </el-menu>
         </el-col>
         <ul class="product-list">
           <li class="product-item" v-for="(product,index) in productList" :key="index" v-if="product.type == productType">
             <a>
-              <img class="product-img" :src="product.url">
+              <img class="product-item-img" :src="product.url">
               <p class="product-name">{{product.name}}</p>
             </a>
           </li>
@@ -404,7 +436,7 @@
     text-align: center;
   }
 
-  .product-img {
+  .product-item-img {
     width: 274px;
     height: 205px;
   }
@@ -422,6 +454,10 @@
 
   .product-name {
     text-align: center;
+  }
+
+  .news li{
+    padding: 0 !important;
   }
 
 </style>
