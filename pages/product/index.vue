@@ -35,10 +35,11 @@
         <el-col :span="5" class="menu-left">
           <h2>产品中心</h2>
           <el-menu
-            default-active="2"
+            default-active="1"
             class="el-menu-vertical-demo"
             @open="handleOpen"
-            @close="handleClose">
+            @close="handleClose"
+            @select="selectProduct">
             <el-menu-item index="1">
               <i class="el-icon-menu"></i>
               <span slot="title">陶粒</span>
@@ -57,19 +58,14 @@
             </el-menu-item>
           </el-menu>
         </el-col>
-        <el-col :offset="1" :span="18">
-          <el-row gutter="10">
-            <el-col :span="8">1</el-col>
-            <el-col :span="8">2</el-col>
-            <el-col :span="8">3</el-col>
-          </el-row>
-          <el-row gutter="10">
-            <el-col :span="8">4</el-col>
-            <el-col :span="8">5</el-col>
-            <el-col :span="8">6</el-col>
-          </el-row>
-
-        </el-col>
+        <ul class="product-list">
+          <li class="product-item" v-for="(product,index) in productList" :key="index" v-if="product.type == productType">
+            <a>
+              <img class="product-img" :src="product.url">
+              <p class="product-name">{{product.name}}</p>
+            </a>
+          </li>
+        </ul>
       </el-row>
     </div>
 
@@ -105,7 +101,115 @@
         navList: [
           {name: '首页', url: '/'},
           {name: '产品中心', url: '/product'},
-        ]
+        ],
+        productList: [
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522247.jpg'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522429.jpg'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/2018952250.jpg'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522930.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522956.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221124.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522125.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221612.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221630.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221645.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522170.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221717.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222138.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522197.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221925.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221943.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522202.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222211.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222234.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222253.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222416.jpg'
+          },
+        ],
+        productType: 1
       }
     },
     methods: {
@@ -141,6 +245,9 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      selectProduct(key, keyPath){
+        this.productType = key;
       }
     }
   }
@@ -286,7 +393,7 @@
     padding-left: 0;
   }
 
-  .menu-left h2{
+  .menu-left h2 {
     width: 100%;
     height: 70px;
     line-height: 68px;
@@ -294,6 +401,26 @@
     color: #fff;
     font-size: 30px;
     font-weight: 400;
+    text-align: center;
+  }
+
+  .product-img {
+    width: 274px;
+    height: 205px;
+  }
+
+  .product-list {
+    float: left;
+    width: 78%;
+    margin-left: 12px;
+  }
+
+  .product-item {
+    float: left;
+    margin: 0 10px 10px 10px;
+  }
+
+  .product-name {
     text-align: center;
   }
 
