@@ -59,28 +59,23 @@
           </el-menu>
           <h2>新闻资讯</h2>
           <el-menu
-            default-active="1"
+            default-active=""
             class="news"
             @open="handleOpen"
-            @close="handleClose"
-            @select="selectProduct">
+            @close="handleClose">
             <el-menu-item index="1">
               <i class="el-icon-document"></i>
               <span slot="title">陶粒简析陶粒在生活中的巧用</span>
             </el-menu-item>
             <el-menu-item index="2">
               <i class="el-icon-document"></i>
-              <span slot="title">热烈祝贺南京华盛新型节能环保</span>
+              <span slot="title">南京华盛推出陶粒加气砌块</span>
             </el-menu-item>
             <el-menu-item index="3">
               <i class="el-icon-document"></i>
-              <span slot="title">南京华盛推出陶粒加气砌块</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-document"></i>
               <span slot="title">南京华盛陶粒成为环保节能陶粒</span>
             </el-menu-item>
-            <el-menu-item index="5">
+            <el-menu-item index="4">
               <i class="el-icon-document"></i>
               <span slot="title">华盛陶粒厂粘土陶粒使用“土法</span>
             </el-menu-item>
