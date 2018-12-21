@@ -33,30 +33,6 @@
       </div>
       <el-row class="menu-contain">
         <el-col :span="5" class="menu-left">
-          <h2>产品中心</h2>
-          <el-menu
-            default-active=""
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            @select="selectProduct">
-            <el-menu-item index="1">
-              <i class="el-icon-menu"></i>
-              <span slot="title">陶粒</span>
-            </el-menu-item>
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
-              <span slot="title">岩棉板</span>
-            </el-menu-item>
-            <el-menu-item index="3">
-              <i class="el-icon-menu"></i>
-              <span slot="title">挤塑板</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-menu"></i>
-              <span slot="title">陶粒加气块</span>
-            </el-menu-item>
-          </el-menu>
           <h2>新闻资讯</h2>
           <el-menu
             default-active="1"
@@ -83,6 +59,30 @@
             <el-menu-item index="5">
               <i class="el-icon-document"></i>
               <span slot="title">陶粒的构成特点及功能？</span>
+            </el-menu-item>
+          </el-menu>
+          <h2>产品中心</h2>
+          <el-menu
+            default-active=""
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            @select="selectProduct">
+            <el-menu-item index="1">
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title">岩棉板</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-menu"></i>
+              <span slot="title">挤塑板</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒加气块</span>
             </el-menu-item>
           </el-menu>
         </el-col>
@@ -431,7 +431,6 @@
   }
 
   .articleTit {
-    margin-top: 37px;
     font-size: 22px;
     color: #434343;
     text-align: center;

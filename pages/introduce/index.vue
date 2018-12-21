@@ -20,7 +20,46 @@
         src="~/assets/company.jpg"
         alt="公司名称">
     </div>
-    <div>公司简介</div>
+    <div class="banner-about">
+      <div class="container">
+        <h1>信任&nbsp;&nbsp;创新&nbsp;&nbsp;实干&nbsp;&nbsp;成功</h1>
+      </div>
+    </div>
+    <div class="aboutUs">
+      <div class="container">
+        <div class="title">
+          <h2>关于华盛</h2>
+          <h2>About Us</h2>
+        </div>
+        <p>
+         华盛陶粒是目前陶粒行业集研发、生产、销售、服务于一体的专业化陶粒企业。有着10余条生产线。50多名员工，全规格陶粒年产量达到20万立方。目前办事处设在南京江宁，欢迎各界人士前来参观、考察、洽谈业务，华盛陶粒，专注于保温建材节能领域，坚持“稳健经营、持续创新、开放合作”。华盛陶粒拥有雄厚的技术力量，先进的生产设备，庞大的精英生产团队，为企业和客户提供满意的产品和服务，并致力于节能、减排、环保、创造社会效益，实干赢取未来，创新成就梦想。
+        </p>
+        <img src="http://www.njhuasheng.cn/images/up_images/201891017423.jpg" alt="">
+      </div>
+    </div>
+    <div class="contactUs">
+      <div class="container">
+        <div class="title">
+          <h2>联系华盛</h2>
+          <h2>Contact Us</h2>
+        </div>
+        <p>
+          <label>公司地址：</label>江苏省南京市雨花台区大周路软件谷科创城C1南 <br>
+          <label>服务热线：</label>400-184-0001 <br>
+          <label>QQ咨询：</label><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2853573559&amp;site=qq&amp;menu=yes">2853573559</a>
+        </p>
+      </div>
+    </div>
+    <div class="jion">
+      <div class="container">
+        <p>
+          我们是一群热血、激情、有个性的奋斗者<br>
+          我们是一个从不妥协、坚信实干、追求卓越的团队<br>
+          我们期待你的加入<br>
+        </p>
+        <a href="javascript:;" class="dis-no">诚聘精英</a>
+      </div>
+    </div>
     <div class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -49,6 +88,7 @@
     data() {
       return{
         activeIndex: '5',
+        banner: 'http://www.bm001.com/r/cms/bm001new/default/img/about/banner.jpg',
       }
     },
     methods: {
@@ -182,5 +222,89 @@
     letter-spacing: 1px;
     color: #666;
     text-align: center;
+  }
+
+  .banner-about {
+    height: 500px;
+    background: url(http://www.bm001.com/r/cms/bm001new/default/img/about/banner.jpg) no-repeat center;
+  }
+
+  .container {
+    text-align: center;
+    zoom: 1;
+    width: 1200px;
+    margin: 0 auto;
+    overflow: visible;
+    clear: both;
+    position: relative;
+  }
+
+  .container:before {
+    display: table;
+    content: " ";
+  }
+
+  .container h1 {
+    width: 100%;
+    margin-top: 160px;
+    font-size: 72px;
+    font-family: '华文细黑';
+    padding-left: 0;
+    color: #333;
+  }
+
+  .aboutUs {
+    height: 568px;
+  }
+
+  .container:before {
+    display: table;
+    content: " ";
+  }
+
+  .title {
+    margin-top: 80px;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .title h2 {
+    width: 640px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 45px;
+    color: #333;
+    text-align: left;
+  }
+
+  .title h2:last-child {
+    font-weight: 400;
+    margin-top: 5px;
+  }
+
+  .title:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #4dadf7;
+    margin-top: 42px;
+  }
+
+  .aboutUs .container p {
+    margin-top: 40px;
+    width: 356px;
+    font-size: 16px;
+    color: #999;
+    line-height: 24px;
+    text-align: justify;
+  }
+
+  .aboutUs .container img{
+    position: absolute;
+    right: 0;
+    height: 425px;
+    top: 85px;
+    width: 624px;
   }
 </style>
