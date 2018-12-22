@@ -35,30 +35,31 @@
         <el-col :span="5" class="menu-left">
           <h2>产品中心</h2>
           <el-menu
-            default-active=""
-            class="el-menu-case"
+            :default-active="productIndex"
+            class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
-            @select="selectCase">
+            @select="selectProduct">
             <el-menu-item index="1">
-              <span slot="title">恒大建筑</span>
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒</span>
             </el-menu-item>
             <el-menu-item index="2">
-              <span slot="title">鑫科建筑</span>
+              <i class="el-icon-menu"></i>
+              <span slot="title">岩棉板</span>
             </el-menu-item>
             <el-menu-item index="3">
-              <span slot="title">鲁南酒店</span>
+              <i class="el-icon-menu"></i>
+              <span slot="title">挤塑板</span>
             </el-menu-item>
             <el-menu-item index="4">
-              <span slot="title">水电四局</span>
-            </el-menu-item>
-            <el-menu-item index="5">
-              <span slot="title">中建集团</span>
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒加气块</span>
             </el-menu-item>
           </el-menu>
           <h2>新闻资讯</h2>
           <el-menu
-            default-active=""
+            :default-active="newsIndex"
             class="news"
             @open="handleOpen"
             @close="handleClose"
@@ -85,17 +86,17 @@
             </el-menu-item>
           </el-menu>
         </el-col>
-        <ul class="product-list" v-if="!caseDetail">
-          <li class="product-item" v-for="(caseItem,index) in caseList" :key="index">
+        <ul class="product-list">
+          <li class="product-item" v-for="(product,index) in productList" :key="index" v-if="product.type == productType">
             <a>
-              <img class="product-item-img" :src="caseItem.url">
-              <p class="product-name">{{caseItem.name}}</p>
+              <img class="product-item-img" :src="product.url">
+              <p class="product-name">{{product.name}}</p>
             </a>
           </li>
-        </ul>:
-        <div  v-html="content" v-if="caseDetail"></div>
+        </ul>
       </el-row>
     </div>
+
     <div class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -121,99 +122,129 @@
 
 <script>
   export default {
+    created(){
+      let productIndex = this.$route.params.productIndex;
+      this.productIndex = productIndex;
+      this.productType = productIndex;
+    },
     data() {
-      return{
-        activeIndex: '4',
+      return {
+        activeIndex: '2',
+        productIndex: '1',
+        newsIndex:'',
         banner: 'http://www.shjztl.com/web/uploads/cover/20180703/j1z1mZ7XMr1aPU0e3J5k8leb5103X585.jpg',
         navList: [
           {name: '首页', url: '/'},
-          {name: '工程案例', url: '/case'}
+          {name: '产品中心', url: '/product'},
         ],
-        caseList: [
+        productList: [
           {
-            id: 1,
-            name: '恒大建筑合作案例',
-            url: 'http://www.njhuasheng.cn/images/up_images/2018914134214.jpg'
-          },{
-            id: 2,
-            name: '鑫科建筑合作案例',
-            url: 'http://www.njhuasheng.cn/images/up_images/2018914133727.jpg'
-          },{
-            id: 3,
-            name: '鲁南酒店合作案例',
-            url: 'http://www.njhuasheng.cn/images/up_images/2018914133413.jpg'
-          },{
-            id: 4,
-            name: '水电四局合作案例',
-            url: 'http://www.njhuasheng.cn/images/up_images/2018914134327.jpg'
-          },{
-            id: 5,
-            name: '中建集团合作案例',
-            url: 'http://www.njhuasheng.cn/images/up_images/201891413100.jpg'
-          }],
-        caseDetail: false,
-        content: '<div class="article">' +
-        '<h3 class="articleTit">恒大建筑合作案例</h3>' +
-        '<div class="articleCon">' +
-        '<img src="http://www.njhuasheng.cn/images/up_images/2018914134214.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-        '</div>' +
-        '<h3 class="tag">相关标签：</h3>' +
-        '<div class="page">上一篇：无<br>下一篇：<a href="javascript:void(0)">鑫科建筑合作案例</a></div>'+
-        '</div>',
-        caseDetailList: [{
-          id: 1,
-          content: '<div class="article">' +
-          '<h3 class="articleTit">鑫科建筑合作案例</h3>' +
-          '<div class="articleCon">' +
-          '<img src="http://www.njhuasheng.cn/images/up_images/2018914133727.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-          '</div>' +
-          '<h3 class="tag">相关标签：</h3>' +
-          '<div class="page">上一篇：恒大建筑合作案例<br>下一篇：<a href="javascript:void(0)">中建集团合作案例</a></div>'+
-          '</div>'
-        }, {
-          id: 2,
-          content: '<div class="article">' +
-          '<h3 class="articleTit">中建集团合作案例</h3>' +
-          '<div class="articleCon">' +
-          '<img src="http://www.njhuasheng.cn/images/up_images/2018914133413.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-          '</div>' +
-          '<h3 class="tag">相关标签：</h3>' +
-          '<div class="page">上一篇：鑫科建筑合作案例<br>下一篇：<a href="javascript:void(0)">水电四局合作案例</a></div>'+
-          '</div>'
-        },
-          {
-            id: 3,
-            content:'<div class="article">' +
-            '<h3 class="articleTit">水电四局合作案例</h3>' +
-            '<div class="articleCon">' +
-            '<img src="http://www.njhuasheng.cn/images/up_images/2018914134214.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-            '</div>' +
-            '<h3 class="tag">相关标签：</h3>' +
-            '<div class="page">上一篇：鲁南酒店合作案例<br>下一篇：<a href="javascript:void(0)">无</a></div>'+
-            '</div>'
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522247.jpg'
           },
           {
-            id: 4,
-            content: '<div class="article">' +
-            '<h3 class="articleTit">恒大建筑合作案例</h3>' +
-            '<div class="articleCon">' +
-            '<img src="http://www.njhuasheng.cn/images/up_images/2018914134327.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-            '</div>' +
-            '<h3 class="tag">相关标签：</h3>' +
-            '<div class="page">上一篇：无<br>下一篇：<a href="/resolve/jiangsu55.html">鑫科建筑合作案例</a></div>'+
-            '</div>'
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522429.jpg'
           },
           {
-            id: 5,
-            content: '<div class="article">' +
-            '<h3 class="articleTit">恒大建筑合作案例</h3>' +
-            '<div class="articleCon">' +
-            '<img src="http://www.njhuasheng.cn/images/up_images/201891413100.jpg" width="600" height="400" style="width: 600px; height: 400px;">' +
-            '</div>' +
-            '<h3 class="tag">相关标签：</h3>' +
-            '<div class="page">上一篇：无<br>下一篇：<a href="/resolve/jiangsu55.html">鑫科建筑合作案例</a></div>'+
-            '</div>'
-          }]
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/2018952250.jpg'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522930.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522956.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221124.png'
+          },
+          {
+            type: 1,
+            name: '陶粒',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522125.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221612.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221630.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221645.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522170.jpg'
+          },
+          {
+            type: 2,
+            name: '岩棉板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221717.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222138.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522197.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221925.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895221943.jpg'
+          },
+          {
+            type: 3,
+            name: '挤塑板',
+            url: 'http://www.njhuasheng.cn/images/up_images/20189522202.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222211.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222234.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222253.jpg'
+          },
+          {
+            type: 4,
+            name: '陶粒加气块',
+            url: 'http://www.njhuasheng.cn/images/up_images/201895222416.jpg'
+          },
+        ],
+        productType: 1
       }
     },
     methods: {
@@ -250,13 +281,8 @@
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       },
-      selectCase(key, keyPath){
-        this.caseDetail = true;
-        for (let i = 0; i < this.caseDetailList.length; i++) {
-          if (key == this.caseDetailList[i].id) {
-            this.content = this.caseDetailList[i].content;
-          }
-        }
+      selectProduct(key, keyPath){
+        this.productType = key;
       },
       selectNews(key, keyPath){
         this.$router.push({
@@ -368,6 +394,16 @@
     text-align: center;
   }
 
+  .product-banner {
+    width: 100%;
+    height: 450px;
+  }
+
+  .product-banner img {
+    width: 100%;
+    height: 450px;
+  }
+
   .product-main {
     padding: 20px 30px;
     box-sizing: border-box;
@@ -386,6 +422,26 @@
     background-color: #f9f8f8;
     padding-left: 6em;
     margin-bottom: 28px;
+  }
+
+  .product-nav div {
+    line-height: 42px;
+    height: 42px;
+  }
+
+  .product-main .el-menu {
+    padding-left: 0;
+  }
+
+  .menu-left h2 {
+    width: 100%;
+    height: 70px;
+    line-height: 68px;
+    background-color: #05C;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
   }
 
   .product-item-img {
@@ -408,71 +464,8 @@
     text-align: center;
   }
 
-  .el-menu-case .el-menu-item{
-    text-align: center;
-  }
-
-  .menu-left h2 {
-    width: 100%;
-    height: 70px;
-    line-height: 68px;
-    background-color: #05C;
-    color: #fff;
-    font-size: 30px;
-    font-weight: 400;
-    text-align: center;
-  }
-
   .news li{
     padding: 0 !important;
   }
 
-  .articleTit {
-    font-size: 22px;
-    color: #434343;
-    text-align: center;
-    height: 38px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-
-  .articleCon {
-    line-height: 2em;
-    color: #666;
-    text-align: center;
-  }
-
-  h3.tag {
-    line-height: 24px;
-    border-top: 1px dashed #e0e1dc;
-    margin: 10px 10px 0 40px;
-    color: #999;
-    font-weight: normal;
-    padding-top: 8px;
-    font-size: 14px;
-  }
-
-  .page {
-    line-height: 26px;
-    border-top: 1px dashed #e0e1dc;
-    margin: 6px 10px 0 40px;
-    padding-top: 15px;
-    font-size: 12px;
-    padding-bottom: 25px;
-  }
-
-  .product-main .el-menu {
-    padding-left: 0;
-  }
-
-  .product-nav div {
-    line-height: 42px;
-    height: 42px;
-  }
-
-  .article {
-    float: left;
-    width: 78%;
-    margin-left: 12px;
-  }
 </style>

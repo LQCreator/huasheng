@@ -40,14 +40,12 @@
     <div class="contactUs">
       <div class="container">
         <div class="title">
-          <h2>联系华盛</h2>
+          <h2>华盛精神</h2>
           <h2>Contact Us</h2>
         </div>
-        <p>
-          <label>公司地址：</label>江苏省南京市雨花台区大周路软件谷科创城C1南 <br>
-          <label>服务热线：</label>400-184-0001 <br>
-          <label>QQ咨询：</label><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2853573559&amp;site=qq&amp;menu=yes">2853573559</a>
-        </p>
+        <p>【一、经营理念】"诚信"是中华民族传统的价值理念，古人把诚信当作修身养性、立国做人的根本。"信"是一种大智慧，即自信于己，诚信于人；重信守约，说到做到。以客户的利益与需求为本 客户至上，真诚沟通，只有不认真的服务，没有挑剔的客户，着眼未来，服务人类，面向生活，美化空间，这些人文概念的融合，既涵盖了华盛产品的特征，又展示华盛做大型企业的气魄与胸怀，企业精神：团结 创新 敬业 奉献 在竞争日趋激烈的现实环境中，团队力量的发挥是企业赢得竞争优势的重要条件。</p>
+        <p>【二、经营宗旨】至高品质 至诚服务，依靠技术进步，优化产品质量；提高经济效益，实施大集团战略，发挥规模经济优势，华盛陶粒产品通过严格的产品质量认证和质量体系认证，贯彻好的品质管理，为广大客户提供的陶粒和新型建材。</p>
+        <p> 南京华盛新型节能环保材料有限公司的宗旨为客户提供满意的产品和服务，为客户提供解决方案，我们用全心全意的服务来解决您的难题，期待您的来电，共创佳绩！</p>
       </div>
     </div>
     <div class="jion">
@@ -55,9 +53,8 @@
         <p>
           我们是一群热血、激情、有个性的奋斗者<br>
           我们是一个从不妥协、坚信实干、追求卓越的团队<br>
-          我们期待你的加入<br>
+          我们期待你的到来<br>
         </p>
-        <a href="javascript:;" class="dis-no">诚聘精英</a>
       </div>
     </div>
     <div class="footer">
@@ -306,5 +303,31 @@
     height: 425px;
     top: 85px;
     width: 624px;
+  }
+
+  .contactUs {
+    height: 540px;
+    background: #f7f7f7;
+  }
+
+  .contactUs .container p {
+    text-align: left;
+    text-indent: 2em;
+    line-height: 2em;
+  }
+
+  .jion {
+    height: 382px;
+  }
+
+  .jion .container {
+    text-align: center;
+  }
+
+  .jion .container p {
+    margin-top: 97px;
+    font-size: 18px;
+    line-height: 38px;
+    color: #333;
   }
 </style>

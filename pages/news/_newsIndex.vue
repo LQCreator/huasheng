@@ -114,6 +114,15 @@
 
 <script>
   export default {
+    created(){
+      let newsIndex = this.$route.params.newsIndex;
+      this.newsIndex = newsIndex;
+      for (let i = 0; i < this.articleList.length; i++) {
+        if (newsIndex == this.articleList[i].type) {
+          this.content = this.articleList[i].content;
+        }
+      }
+    },
     data() {
       return {
         activeIndex: '3',
@@ -233,7 +242,7 @@
           });
         } else if (key === "5") {
           this.$router.push({
-            path: '/introduce'
+            path: `/product/${key}`
           });
         } else if (key === "6") {
           this.$router.push({

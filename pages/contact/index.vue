@@ -20,7 +20,88 @@
         src="~/assets/company.jpg"
         alt="公司名称">
     </div>
-    <div>联系我们</div>
+    <div class="product-banner">
+      <img :src="banner" alt="">
+    </div>
+    <div class=product-main>
+      <div class="product-nav">
+        <div>
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item v-for="(nav,index) in navList" :to="{ path: nav.url }">{{nav.name}}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+      </div>
+      <el-row class="menu-contain">
+        <el-col :span="5" class="menu-left">
+          <h2>产品中心</h2>
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            @select="selectProduct">
+            <el-menu-item index="1">
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title">岩棉板</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-menu"></i>
+              <span slot="title">挤塑板</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-menu"></i>
+              <span slot="title">陶粒加气块</span>
+            </el-menu-item>
+          </el-menu>
+          <h2>新闻资讯</h2>
+          <el-menu
+            :default-active="newsIndex"
+            class="news"
+            @open="handleOpen"
+            @close="handleClose"
+            @select="selectNews">
+            <el-menu-item index="1">
+              <i class="el-icon-document"></i>
+              <span slot="title">陶粒简析陶粒在生活中的巧用</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-document"></i>
+              <span slot="title">南京华盛推出陶粒加气砌块</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-document"></i>
+              <span slot="title">南京华盛陶粒成为环保节能陶粒</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-document"></i>
+              <span slot="title">华盛陶粒厂粘土陶粒使用“土法</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-document"></i>
+              <span slot="title">陶粒的构成特点及功能？</span>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+        <div>
+          <div class="contactText">
+            <img src="http://www.shjztl.com/web/uploads/editor/20180703/p050jPQ1XWi4g192Oi60Mx35W1Yie0l3.png"/>
+            <div class="companyName"><strong>南京华盛新型节能环保材料有限公司</strong></div>
+            <p>联系电话：15380861888</p>
+            <p>联系人：王经理</p>
+          </div>
+          <div class="qrCodeStyle">
+            <img src="http://pic.qianmi.com/elife/bmweb/qrcode-bm-2.jpg" style="width: 200px;height: 200px"/>
+          </div>
+        </div>
+        <div class="mapStyle">
+          <img src="~/assets/address.png" style="width: 100%"/>
+        </div>
+      </el-row>
+    </div>
     <div class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -47,8 +128,16 @@
 <script>
   export default {
     data() {
-      return{
+      return {
         activeIndex: '6',
+        productIndex: '',
+        newsIndex:'',
+        banner: 'http://www.shjztl.com/web/uploads/cover/20180703/j1z1mZ7XMr1aPU0e3J5k8leb5103X585.jpg',
+        navList: [
+          {name: '首页', url: '/'},
+          {name: '产品中心', url: '/product'},
+        ],
+        productType: 1
       }
     },
     methods: {
@@ -79,6 +168,22 @@
           });
         }
       },
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      selectProduct(key, keyPath){
+        this.$router.push({
+          path: `/product/${key}`
+        });
+      },
+      selectNews(key, keyPath){
+        this.$router.push({
+          path: `/news/${key}`
+        });
+      }
     }
   }
 </script>
@@ -87,7 +192,28 @@
   .el-menu {
     padding-left: 60%;
   }
-
+  .contactText {
+    text-align: center;
+    width:48%;
+    float: left;
+  }
+  .qrCodeStyle {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+  }
+  .mapStyle {
+    float: right;
+    width: 77%;
+  }
+  .mapStyle img{
+    width: 100%;
+    height: 433px;
+    margin-top: 10px;
+  }
+  .companyName {
+    font-size: 20px;
+  }
   .companyIcon {
     width: 30%;
     height: 60px;
@@ -183,4 +309,79 @@
     color: #666;
     text-align: center;
   }
+
+  .product-banner {
+    width: 100%;
+    height: 450px;
+  }
+
+  .product-banner img {
+    width: 100%;
+    height: 450px;
+  }
+
+  .product-main {
+    padding: 20px 30px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    width: 1200px;
+  }
+
+  .product-nav {
+    height: 42px;
+    background-image: url("http://www.shjztl.com/web/template/pctpl/images/09.jpg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-color: #f9f8f8;
+    padding-left: 6em;
+    margin-bottom: 28px;
+  }
+
+  .product-nav div {
+    line-height: 42px;
+    height: 42px;
+  }
+
+  .product-main .el-menu {
+    padding-left: 0;
+  }
+
+  .menu-left h2 {
+    width: 100%;
+    height: 70px;
+    line-height: 68px;
+    background-color: #05C;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .product-img {
+    width: 274px;
+    height: 205px;
+  }
+
+  .product-list {
+    float: left;
+    width: 78%;
+    margin-left: 12px;
+  }
+
+  .product-item {
+    float: left;
+    margin: 0 10px 10px 10px;
+  }
+
+  .product-name {
+    text-align: center;
+  }
+
+  .news li{
+    padding: 0 !important;
+  }
+
 </style>

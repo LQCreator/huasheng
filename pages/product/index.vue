@@ -35,7 +35,7 @@
         <el-col :span="5" class="menu-left">
           <h2>产品中心</h2>
           <el-menu
-            default-active="1"
+            :default-active="productIndex"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -59,10 +59,11 @@
           </el-menu>
           <h2>新闻资讯</h2>
           <el-menu
-            default-active=""
+            :default-active="newsIndex"
             class="news"
             @open="handleOpen"
-            @close="handleClose">
+            @close="handleClose"
+            @select="selectNews">
             <el-menu-item index="1">
               <i class="el-icon-document"></i>
               <span slot="title">陶粒简析陶粒在生活中的巧用</span>
@@ -124,6 +125,8 @@
     data() {
       return {
         activeIndex: '2',
+        productIndex: '1',
+        newsIndex:'',
         banner: 'http://www.shjztl.com/web/uploads/cover/20180703/j1z1mZ7XMr1aPU0e3J5k8leb5103X585.jpg',
         navList: [
           {name: '首页', url: '/'},
@@ -275,6 +278,11 @@
       },
       selectProduct(key, keyPath){
         this.productType = key;
+      },
+      selectNews(key, keyPath){
+        this.$router.push({
+          path: `/news/${key}`
+        });
       }
     }
   }
